@@ -13,7 +13,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'YOUR_GITHUB_REPO_URL'
+                git 'https://github.com/adimane-08/my-app.git'
             }
         }
 
