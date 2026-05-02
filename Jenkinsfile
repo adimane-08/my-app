@@ -42,8 +42,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t java-app:latest .'
-                bat 'docker tag java-app:latest java-app:%BUILD_NUMBER%'
-                bat 'docker push java-app:%BUILD_NUMBER%'
+                bat 'docker tag java-app:latest adimane0801/java-app:%BUILD_NUMBER%'
+                bat 'docker push adimane0801/java-app:%BUILD_NUMBER%'
             }
         }
 
