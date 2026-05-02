@@ -46,8 +46,10 @@ pipeline {
                   bat 'docker build -t java-app:latest .'
                   bat 'docker tag java-app:latest adimane0801/java-app:%BUILD_NUMBER%'
                   bat 'docker push adimane0801/java-app:%BUILD_NUMBER%'
+              }
             }
         }
+
 
         stage('Deploy to Kubernetes') {
             steps {
