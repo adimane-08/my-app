@@ -26,11 +26,12 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
               withSonarQubeEnv('SonarQube') {
-                bat'''
-                mvn sonar:sonar \
-                  -Dsonar.projectKey=java-app \
-                  -Dsonar.login=your-sonar-token
-                '''
+                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                        bat'''
+                        mvn sonar:sonar \
+                          -Dsonar.projectKey=java-app \
+                          -Dsonar.login=your-sonar-token
+                        '''
 
               }
             }
