@@ -7,6 +7,6 @@ public class HelloController {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello Aditya 🚀";
+        return "Hello Aditya you have successfully deployed your Spring Boot app to Kubernetes! 🚀";
     }
 }
