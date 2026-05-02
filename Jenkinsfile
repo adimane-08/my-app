@@ -19,25 +19,25 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                sh 'mvn sonar:sonar'
+                bat 'mvn sonar:sonar'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t java-app:latest .'
+                bat 'docker build -t java-app:latest .'
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f k8s.yaml'
+                bat 'kubectl apply -f k8s.yaml'
             }
         }
     }
