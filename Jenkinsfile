@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "java-app"
+        KUBECONFIG = 'C:\\Users\\Aditya\\.kube\\config'
     }
 
     stages {
