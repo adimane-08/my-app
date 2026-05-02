@@ -47,8 +47,23 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                bat 'kubectl apply -f k8s.yaml'
+              bat """
+                kubectl set image deployment/java-app java-app=%IMAGE_NAME%
+                kubectl rollout status deployment/java-app
+                """
             }
         }
+
+        
+        // stage('Update Deployments') {
+        //     steps {
+        //         bat """
+        //         kubectl set image deployment/java-app myapp=adimane0801/myapp:%BUILD_NUMBER%
+        //         kubectl rollout restart deployment  myapp-deployment
+        //         kubectl rollout status deployment  myapp-deployment
+        //         """
+        //     }
+        // }
+    }
     }
 }
