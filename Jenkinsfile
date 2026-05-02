@@ -41,9 +41,11 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t java-app:latest .'
-                bat 'docker tag java-app:latest adimane0801/java-app:%BUILD_NUMBER%'
-                bat 'docker push adimane0801/java-app:%BUILD_NUMBER%'
+              withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                  docker login -u %USER% -p %PASS%
+                  bat 'docker build -t java-app:latest .'
+                  bat 'docker tag java-app:latest adimane0801/java-app:%BUILD_NUMBER%'
+                  bat 'docker push adimane0801/java-app:%BUILD_NUMBER%'
             }
         }
 
