@@ -33,6 +33,7 @@ pipeline {
                           -Dsonar.login=your-sonar-token
                         '''
 
+                 }
               }
             }
         }
