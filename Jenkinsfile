@@ -25,18 +25,18 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-              withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarQube') {
                     withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
-                        bat'''
-                        mvn sonar:sonar \
-                          -Dsonar.projectKey=java-app \
-                          -Dsonar.login=your-sonar-token
-                        '''
-
-                 }
-              }
+                        bat """
+                        mvn sonar:sonar ^
+                        -Dsonar.projectKey=java-app ^
+                        -Dsonar.host.url=http://localhost:9000 ^
+                        -Dsonar.login=%SONAR_TOKEN%
+                        """
             }
         }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
