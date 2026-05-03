@@ -50,6 +50,13 @@ pipeline {
               }
             }
         }
+        stage('apply k8 manifest') {
+            steps {
+              bat """
+                kubectl apply -f k8s.yaml
+                """
+            }
+        }
 
 
         stage('Deploy to Kubernetes') {
