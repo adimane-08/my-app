@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "java-app"
+        IMAGE_NAME = "adimane0801/java-app"
         KUBECONFIG = 'C:\\Users\\Aditya\\.kube\\config'
     }
 
@@ -44,9 +44,8 @@ pipeline {
               withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                 bat """
                   echo %PASS% | docker login -u %USER% --password-stdin
-                  docker build -t java-app:latest .
-                  docker tag java-app:latest adimane0801/java-app:%BUILD_NUMBER%
-                  docker push adimane0801/java-app:%BUILD_NUMBER%
+                  docker build -t %IMAGE_NAME%:BUILD_NUMBER% .
+                  docker push %IMAGE_NAME%:%BUILD_NUMBER%
                   """
               }
             }
@@ -56,7 +55,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
               bat """
-                kubectl set image deployment/java-app java-app=adimane0801/java-app:%BUILD_NUMBER%
+                kubectl set image deployment/java-app java-app=%IMAGE_NAME%:%BUILD_NUMBER%
                 kubectl rollout status deployment/java-app
                 """
             }
