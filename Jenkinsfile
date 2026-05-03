@@ -44,7 +44,7 @@ pipeline {
               withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                 bat """
                   echo %PASS% | docker login -u %USER% --password-stdin
-                  docker build -t java-app:latest .'
+                  docker build -t java-app:latest .
                   docker tag java-app:latest adimane0801/java-app:%BUILD_NUMBER%
                   docker push adimane0801/java-app:%BUILD_NUMBER%
                   """
