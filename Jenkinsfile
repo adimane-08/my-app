@@ -54,6 +54,7 @@ pipeline {
             steps {
               bat """
                 kubectl apply -f k8s.yaml
+                kubectl apply -f service-monitor.yaml
                 """
             }
         }
