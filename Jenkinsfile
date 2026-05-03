@@ -56,6 +56,7 @@ pipeline {
             steps {
               bat """
                 kubectl set image deployment/java-app java-app=%IMAGE_NAME%:%BUILD_NUMBER%
+                kubectl rollout restart deployment java-app
                 kubectl rollout status deployment/java-app
                 """
             }
