@@ -56,7 +56,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
               bat """
-                kubectl set image deployment/java-app java-app=java-app:%BUILD_NUMBER%
+                kubectl set image deployment/java-app java-app=adimane0801/java-app:%BUILD_NUMBER%
                 kubectl rollout status deployment/java-app
                 """
             }
