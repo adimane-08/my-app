@@ -10,12 +10,11 @@ public class HelloController {
     public String hello() {
         return "Hello Aditya Mane welcometo Kubernetes! 🚀";
     }
-}
 
-@RestController
-public class HelloController {
-
-    @GetMapping("/fail")
+     @GetMapping("/fail")
     public String fail() {
         throw new RuntimeException("Test error");
     }
+}
+
+
