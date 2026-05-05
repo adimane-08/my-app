@@ -2,13 +2,7 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-public class HelloController {
 
-    @GetMapping("/fail")
-    public String fail() {
-        throw new RuntimeException("Test error");
-    }
 @RestController
 public class HelloController {
 
@@ -17,3 +11,11 @@ public class HelloController {
         return "Hello Aditya Mane welcometo Kubernetes! 🚀";
     }
 }
+
+@RestController
+public class HelloController {
+
+    @GetMapping("/fail")
+    public String fail() {
+        throw new RuntimeException("Test error");
+    }
